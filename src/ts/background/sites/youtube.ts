@@ -1,10 +1,9 @@
 import PubSub from 'pubsub-js';
 
 export default class Youtube {
-
-    static tabId: number = NaN;
-    static siteId: string = "YOUTUBE";
-    static url: string = "https://www.youtube.com";
+    static tabId = NaN;
+    static siteId = 'YOUTUBE';
+    static url = 'https://www.youtube.com';
 
     constructor() {
         this.init();
@@ -18,8 +17,8 @@ export default class Youtube {
 
     hello(): void {
         console.log('hello');
-        chrome.tabs.sendMessage(Youtube.tabId, {}, (response) => {
-            if(response) {
+        chrome.tabs.sendMessage(Youtube.tabId, {}, response => {
+            if (response) {
                 console.log('hello');
             }
         });
@@ -27,12 +26,15 @@ export default class Youtube {
 
     create() {
         console.log('create');
-        chrome.tabs.create({
-            url: Youtube.url
-        }, tab => {
-            Youtube.tabId = tab.id;
-            console.log('created');
-        });
+        chrome.tabs.create(
+            {
+                url: Youtube.url
+            },
+            tab => {
+                Youtube.tabId = tab.id;
+                console.log('created');
+            }
+        );
     }
 
     delete() {
